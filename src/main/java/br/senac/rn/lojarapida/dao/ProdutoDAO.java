@@ -1,7 +1,7 @@
-package br.senac.rn.lojarapido.dao;
+package br.senac.rn.lojarapida.dao;
 
-import br.senac.rn.lojarapido.model.Produto;
-import br.senac.rn.lojarapido.util.GenericDAO;
+import br.senac.rn.lojarapida.model.Produto;
+import br.senac.rn.lojarapida.util.GenericDAO;
 
 
 

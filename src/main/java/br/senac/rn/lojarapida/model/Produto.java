@@ -1,4 +1,4 @@
-package br.senac.rn.lojarapido.model;
+package br.senac.rn.lojarapida.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

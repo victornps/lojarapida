@@ -1,25 +1,35 @@
-package br.senac.rn.lojarapido.model;
+package br.senac.rn.lojarapida.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "tb_categorias")
-public class Categoria {
+@Entity(name = "tb_sexos")
+public class Sexo {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nome;
-    private String descricao;
-
-    public Categoria() {
+    private char sigla;
+    
+    public Sexo(){
+        
     }
 
-    public Categoria(int id, String nome, String descricao) {
+    public Sexo(int id, String nome, char sigla) {
         this.id = id;
         this.nome = nome;
-        this.descricao = descricao;
+        this.sigla = sigla;
+    }
+
+    public char getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(char sigla) {
+        this.sigla = sigla;
     }
 
     public int getId() {
@@ -38,17 +48,10 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
+        hash = 47 * hash + this.id;
         return hash;
     }
 
@@ -63,7 +66,7 @@ public class Categoria {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Categoria other = (Categoria) obj;
+        final Sexo other = (Sexo) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -72,7 +75,7 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + '}';
+        return "Sexo{" + "id=" + id + ", nome=" + nome + ", sigla=" + sigla + '}';
     }
     
     

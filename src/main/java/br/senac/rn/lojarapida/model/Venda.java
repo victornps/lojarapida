@@ -1,4 +1,4 @@
-package br.senac.rn.lojarapido.model;
+package br.senac.rn.lojarapida.model;
 
 import java.util.Calendar;
 import java.util.List;

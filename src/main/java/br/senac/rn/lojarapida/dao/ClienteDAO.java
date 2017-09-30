@@ -1,8 +1,8 @@
-package br.senac.rn.lojarapido.dao;
+package br.senac.rn.lojarapida.dao;
 
 
-import br.senac.rn.lojarapido.model.Cliente;
-import br.senac.rn.lojarapido.util.GenericDAO;
+import br.senac.rn.lojarapida.model.Cliente;
+import br.senac.rn.lojarapida.util.GenericDAO;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
