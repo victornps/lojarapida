@@ -19,7 +19,13 @@ public class Principal {
     
     public static void main(String[] args) {
         
-        System.out.println(new CategoriaDAO().selectAll());
+        //System.out.println(new CategoriaDAO().selectAll());
+        
+        Categoria c1 = new Categoria();
+        c1.setNome("Teste");
+        c1.setDescricao("Testando");
+        CategoriaDAO dao = new CategoriaDAO();
+        dao.insert(c1);
         
     }
 }

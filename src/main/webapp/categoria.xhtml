@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Categoria</title>
     </h:head>
@@ -13,32 +13,35 @@
             <legend>Dados da Categoria</legend>
             <h:form>
                 <h:panelGrid>
-                    <h:outputLabel value="Nome" for="nome"/>
+                    <h:outputLabel value="Nome" for="nome" />
                     <h:inputText id="nome" value="#{categoriaBean.categoria.nome}" />
-                    <h:outputLabel value="Descrição" for="descricao"/>
-                    <h:inputTextarea id="descricao" value="#{categoriaBean.categoria.descricao}"/>
-                    <h:commandButton value="Salvar" action="#{categoriaBean.salvar()}" />
+                    <h:outputLabel value="Descrição" for="descricao" />
+                    <h:inputTextarea id="descricao" value="#{categoriaBean.categoria.descricao}" />
+                    <h:commandButton value="Salvar" action="#{categoriaBean.salvar}" />
                 </h:panelGrid>
             </h:form>
         </fieldset>
-        
         <fieldset>
             <legend>Lista de Categorias</legend>
             <h:form>
-                <h:dataTable value="#{categoriaBean.categorias} " var="categoria">
+                <h:dataTable value="#{categoriaBean.categorias}" var="categoria">
                     <h:column>
-                        <h:outputText value="#{categoria.id}" />  
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText value="#{categoria.id}" />
                     </h:column>
                     <h:column>
+                        <f:facet name="header">Nome</f:facet>
                         <h:outputText value="#{categoria.nome}" />
                     </h:column>
-
+                    <h:column>
+                        <h:commandLink value="editar" action="#{categoriaBean.editar(categoria)}" />
+                    </h:column>
+                    <h:column>
+                        <h:commandLink value="remover" action="#{categoriaBean.remover(categoria)}" />
+                    </h:column>
                 </h:dataTable>
             </h:form>
-
         </fieldset>
-
 
     </h:body>
 </html>
-

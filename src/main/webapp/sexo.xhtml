@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sexo</title>
+    </h:head>
+    <h:body>
+        <h2>Sexo</h2>
+        <fieldset>
+            <legend>Dados do Sexo</legend>
+            <h:form>
+                <h:panelGrid>
+                    <h:outputLabel value="Nome" for="nome" />
+                    <h:inputText id="nome" value="#{sexoBean.sexo.nome}" />
+                    <h:outputLabel value="Sigla" for="sigla" />
+                    <h:inputTextarea id="sigla" value="#{sexoBean.sexo.sigla}" />
+                    <h:commandButton value="Salvar" action="#{sexoBean.salvar}" />
+                </h:panelGrid>
+            </h:form>
+        </fieldset>
+        <fieldset>
+            <legend>Lista de Sexos</legend>
+            <h:form>
+                <h:dataTable value="#{sexoBean.sexos}" var="sexo">
+                    <h:column>
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText value="#{sexo.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Nome</f:facet>
+                        <h:outputText value="#{sexo.nome}" />
+                    </h:column>
+                    <h:column>
+                        <h:commandLink value="editar" action="#{sexoBean.editar(sexo)}" />
+                    </h:column>
+                    <h:column>
+                        <h:commandLink value="remover" action="#{sexoBean.remover(sexo)}" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </fieldset>
+
+    </h:body>
+</html>
+
