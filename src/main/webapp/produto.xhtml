@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Produto</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h:form id="formCadastroProduto">
+                        <fieldset>
+                            <legend>Dados do Produto</legend>
+                            <div class="form-group">
+                                <h:outputLabel for="nome" value="Nome" />
+                                <h:inputText id="nome" value="#{produtoBean.produto.nome}" styleClass="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel for="descricao" value="Descrição" />
+                                <h:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}" styleClass="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel for="categoria" value="Categoria" />
+                                <h:selectOneMenu id="categoria" value="#{produtoBean.produto.categoria}" converter="categoriaConverter" styleClass="form-control">
+                                    <f:selectItem itemLabel="Selecione uma categoria" itemDisabled="true" />
+                                    <f:selectItems value="#{produtoBean.categorias}" var="categoria" itemLabel="#{categoria.nome}" itemValue="#{categoria}" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel for="preco" value="Preço" />
+                                <h:inputText id="preco" value="#{produtoBean.produto.preco}" styleClass="form-control">
+                                    <f:convertNumber minFractionDigits="2" />
+                                </h:inputText>
+                            </div>
+                            <h:commandButton value="Salvar" action="#{produtoBean.salvar}" styleClass="btn btn-primary btn-block">
+                                <f:ajax execute="@form" render="@form :formListaProdutos" />
+                            </h:commandButton>
+                        </fieldset>
+                    </h:form>
+                </div>
+                <div class="col-md-6">
+                    <h:form id="formListaProdutos">
+                        <fieldset>
+                            <legend>Lista de Produtos</legend>
+                            <h:dataTable id="tabelaProdutos" value="#{produtoBean.produtos}" var="produto" styleClass="table table-striped table-hover">
+                                <h:column>
+                                    <f:facet name="header">Id</f:facet>
+                                    <h:outputText value="#{produto.id}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Nome</f:facet>
+                                    <h:outputText value="#{produto.nome}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Categoria</f:facet>
+                                    <h:outputText value="#{produto.categoria.nome}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Preço</f:facet>
+                                    <h:outputText value="#{produto.preco}">
+                                        <f:convertNumber type="currency" pattern="R$ #,##0.00" currencySymbol="R$" locale="pt_BR" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton value="editar" action="#{produtoBean.editar(produto)}" styleClass="btn btn-success btn-block" />
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton value="excluir" action="#{produtoBean.excluir(produto)}" styleClass="btn btn-danger btn-block" />
+                                </h:column>
+                            </h:dataTable>
+                        </fieldset>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
