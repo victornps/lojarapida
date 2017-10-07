@@ -53,10 +53,10 @@ public class ClienteDAO extends GenericDAO<Cliente>{
         return manager.find(Cliente.class, id);
     }*/
     
-    public List<Cliente> buscarPorCpf(String cpf){
+    public List<Cliente> buscarPorCpf(String cpf) {
         String jpql = "SELECT c FROM Cliente c WHERE c.cpf like :cpfCliente";
-        TypedQuery<Cliente> consulta = manager.createQuery(jpql, Cliente.class);
-        consulta.setParameter("cpfCliente","%" + cpf + "%");
+        TypedQuery<Cliente> consulta = getEm().createQuery(jpql, Cliente.class).setMaxResults(3);
+        consulta.setParameter("cpfCliente", "%" + cpf + "%");
         return consulta.getResultList();
     }
 }

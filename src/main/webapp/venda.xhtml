@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Venda</title>
+    </h:head>
+    <h:body>
+        <p:fieldset legend="Dados da Venda">
+            <h:form>
+                <p:panelGrid columns="1">
+                    <p:outputLabel for="dataVenda" value="Data" />
+                    <p:calendar id="dataVenda" showOn="button" />
+                    <p:outputLabel for="cliente" value="Cliente" />
+                    <p:autoComplete id="cliente" value="#{vendaBean.cliente}" completeMethod="#{vendaBean.getClientesPorCpf}" var="cliente" itemLabel="#{cliente.nome}" converter="clienteConverter" minQueryLength="3" />
+                    <p:panelGrid>
+                        <p:outputLabel for="produto" value="Produto" />
+                        <p:autoComplete id="produto" value="#{vendaBean.produto}" completeMethod="#{vendaBean.getProdutosPorNome}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}" converter="produtoConverter" minQueryLength="3" />
+                        <p:commandButton value="Adicionar" action="#{vendaBean.adicionarProduto}" process="@this produto" update="produto formListaProdutos:tabelaProdutos" />
+                    </p:panelGrid>
+                    <h:form id="formListaProdutos">
+                        <p:dataTable id="tabelaProdutos" value="#{vendaBean.venda.produtos}" var="produto">
+                            <p:column headerText="Id">
+                                <h:outputText value="#{produto.id}" />
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{produto.nome}" />
+                            </p:column>
+                            <p:column headerText="Preço">
+                                <h:outputText value="#{produto.preco}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:panelGrid>
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>
